@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base::layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<div class="container custom-card-shadow" style="margin-top: 60px; margin-bottom: 90px;">
+			<div class="row">
+				<div class="col-md-12 p-5">
+					<div class="row">
+
+
+						<!-- <div class="toast-container position-fixed bottom-0 end-0 p-3">
+							<div class="toast" role="alert" aria-live="assertive"
+								aria-atomic="true" data-bs-autohide="true">
+								<div class="toast-header">
+									<strong class="me-auto">Success</strong>
+									<button type="button" class="btn-close" data-bs-dismiss="toast"
+										aria-label="Close"></button>
+								</div>
+								<div class="toast-body">[[${session.successMsg}]]</div>
+								<th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+							</div>
+						</div> -->
+
+
+						<!-- Bootstrap Toast -->
+						
+						<div class="toast-container position-fixed top-0 end-0 p-3">
+							<div class="toast " role="alert" aria-live="assertive"
+								aria-atomic="true">
+								<div class="toast-header bg-success">
+
+									<strong class="me-auto text-white">Success</strong> <small
+										class="text-muted text-white">just now</small>
+									<button type="button" class="btn-close" data-bs-dismiss="toast"
+										aria-label="Close"></button>
+								</div>
+								<div class="toast-body"><b>[[${session.successMsg}]]</b></div>
+								<th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+							</div>
+						</div>
+						
+						
+						<div class="toast-container position-fixed top-0 end-0 p-3">
+							<div class="toast " role="alert" aria-live="assertive"
+								aria-atomic="true">
+								<div class="toast-header bg-danger">
+
+									<strong class="me-auto text-white">Error</strong> <small
+										class="text-muted text-white">just now</small>
+									<button type="button" class="btn-close" data-bs-dismiss="toast"
+										aria-label="Close"></button>
+								</div>
+								<div class="toast-body"><b>[[${session.errorMsg}]]</b></div>
+								<!-- <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block> -->
+								
+							</div>
+						</div>
+						
+						<!-- Bootstrap Toast -->
+
+
+
+						<!-- <th:block th:if="${session.successMsg}">
+							<p class="text-success fw-bold text-center mt-2 alert alert-success">[[${session.successMsg}]]</p>
+							<th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+
+						</th:block>
+						<th:block th:if="${session.errorMsg}">
+							<p class="text-danger fw-bold text-center mt-2 alert alert-danger">[[${session.errorMsg}]]</p>
+							<th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+						</th:block> -->
+						
+						
+
+
+						<div class="col-md-6 text-center">
+							<img alt="product_image" th:src="@{'/img/product_image/'+${product.productImage}}"
+								width="330px" height="400px">
+						</div>
+
+
+						<div class="col-md-6">
+		 					<p class="fs-3">[[${product.productTitle}]]</p>
+							<p>
+								<span class="fw-bold">Description:</span><br>[[${product.productDescription}]]
+							</p>
+							<p>
+								<span class="fw-bold">Product Details:</span> <br> 
+								Status :
+								<th:block th:if="${product.productStock > 0}">
+									<span class="badge bg-success">Available</span><br>
+								</th:block>
+								<th:block th:unless="${product.productStock > 0}">
+									<span class="badge bg-warning">Out of stock</span> <br>
+								</th:block>
+								 
+								
+								Category: [[${product.productCategory}]] <br>Policy: 7 Days Replacement & Return
+							</p>
+							<p class="fs-5 fw-bold">
+								Price: &nbsp; &nbsp; &nbsp; &nbsp; <i
+									class="fa-solid fa-bangladeshi-taka-sign"></i> [[${product.discountPrice}]] <span
+									class="fs-6 text-decoration-line-through text-secondary">[[${product.productPrice}]]</span>
+								<span class="fs-6 text-success">[[${product.discount}]]% Off</span>
+							</p>
+							<div class="row">
+								<div class="col-md-4 text-success text-center p-2">
+									<i class="fas fa-money-bill-wave fa-2x"></i>
+									<p>Cash On Delivery</p>
+								</div>
+								<div class="col-md-4 text-success text-center p-2">
+									<i class="fas fa-undo-alt fa-2x"></i>
+									<p>Return Available</p>
+								</div>
+								<div class="col-md-4 text-success text-center p-2">
+									<i class="fas fa-truck-moving fa-2x"></i>
+									<p>Free Shipping</p>
+								</div>
+								<th:block th:if="${product.productStock > 0}">
+									<!-- user is not logged in this is coming from:  Global ModelAttribute Method-->
+									<th:block th:if="${currentLoggedInUserDetails==null}">
+										<a href="/signin" class="btn btn-danger col-md-12">Add To Cart</a>
+									</th:block>
+									
+									<!-- user is logged in this is coming from:  Global ModelAttribute Method-->
+									<th:block th:unless="${currentLoggedInUserDetails ==null}">
+										<a th:href="@{'/user/add-to-cart?productId='+${product.id}+'&userId='+${currentLoggedInUserDetails.id}}" class="btn btn-danger col-md-12">Add To Cart</a>
+									</th:block>
+								</th:block>
+								<th:block th:unless="${product.productStock > 0}">
+									<a href="#" class="btn text-white btn-warning col-md-12">Out of Stock</a>
+								</th:block>
+								
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	
+	
+</body>
+</html>

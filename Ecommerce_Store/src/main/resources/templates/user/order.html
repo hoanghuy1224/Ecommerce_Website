@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base::layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<div class="container mt-5">
+			<div class="row">
+				<div class="col-md-6">
+				<p class="fs-4 text-center">Please Fill Up</p>
+				<hr>
+				<form action="">
+					<div class="mb-5 row">
+						<div class="col">
+							<input type="text" name="firstName" placeholder="First Name" class="form-control">
+						</div>
+						<div class="col">
+							<input type="text" name="lastName" placeholder="Last Name" class="form-control">
+						</div>
+					</div>
+					
+					<div class="mb-5 row">
+						<div class="col">
+							<input type="email" name="email" placeholder="Email" class="form-control">
+						</div>
+						<div class="col">
+							<input type="text" name="mobile" placeholder="Mobile" class="form-control">
+						</div>
+					</div>
+					
+					<div class="mb-5 row">
+						<div class="col">
+							<input type="text" name="address" placeholder="Address" class="form-control">
+						</div>
+						<div class="col">
+							<input type="text" name="city" placeholder="City" class="form-control">
+						</div>
+					</div>
+					
+					<div class="mb-5 row">
+						<div class="col">
+							<input type="text" name="state" placeholder="State" class="form-control">
+						</div>
+						<div class="col">
+							<input type="number" name="pincode" placeholder="PIN Code" class="form-control">
+						</div>
+					</div>
+					
+				</form>
+			</div>
+			<div class="col-md-6">
+				<p class="fs-4 text-center">Payment Type</p>
+				<hr>
+				
+				<div class="card">
+					<div class="card-body">
+						<table class="table table-borderless">
+								<tbody>
+									<tr>
+										<td>Total Price</td>
+										<td>:</td>
+										<td>&#2547; 125025</td>
+									</tr>
+									<tr>
+										<td>Delivery Cost</td>
+										<td>:</td>
+										<td>&#2547; 125025</td>
+									</tr>
+									<tr>
+										<td>Tax</td>
+										<td>:</td>
+										<td>&#2547; 125025</td>
+									</tr>
+								</tbody>
+							</table>
+					</div>
+				</div>
+				
+				<div class="card shadow p-3 mb-5 bg-body rounded">
+						
+						<div class="card-body">
+						<form action="/login" method="post">
+							<div class="mb-3">
+								<label class="form-label">Select Payment Type</label> 
+								<select class="form-control">
+									<option>---Select---</option>
+									<option>Cash On Delivery</option>
+									<option>Online Payment</option>
+								</select>
+							</div>
+							
+							<button type="submit" class="btn bg-danger text-white col-md-12">Place Order</button>
+						</form>
+
+						
+					</div>
+					<div class="card-footer text-center">
+						<a href="/forgot-password" class="text-decoration-none">Forgot Password ?</a><br>Don't have an account?
+						<a href="/register" class="text-decoration-none"> Create One</a>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+	</section>
+
+</body>
+</html>

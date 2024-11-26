@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base::layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title>E-Store | Ecommerce Website</title>
+</head>
+<body>
+	<section>
+		<!-- Start Carousel -->
+		<div id="carouselExample" class="carousel slide">
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<img height="550px" src="/img/banner1.jpg" class="d-block w-100" alt="...">
+				</div>
+				<div class="carousel-item">
+					<img style="height:550px;" src="/img/banner2.jpg" class="d-block w-100" alt="...">
+				</div>
+				<div class="carousel-item">
+					<img style="height:550px;" src="/img/banner3.jpg" class="d-block w-100" alt="...">
+				</div>
+			</div>
+			<button class="carousel-control-prev" type="button"
+				data-bs-target="#carouselExample" data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+			</button>
+			<button class="carousel-control-next" type="button"
+				data-bs-target="#carouselExample" data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+			</button>
+		</div>
+		<!-- End of Carousel -->
+		
+		
+		<!-- Start of Category -->
+		<!-- <div class="container">
+			<div class="row">
+				<p class="text-center fs-4 mt-5 mb-5">All Category</p>
+				<div class="col-md-2">
+					<div class="card rounded-circle shadow-sm p-3 mb-5 bg-white rounded">
+						<div class="card-body text-center">
+						<img alt="" src="img/category/electronics.png" width="65%" height="140px">
+						<p>Electronics</p>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md-2">
+					<div class="card rounded-circle shadow-sm p-3 mb-5 bg-white rounded">
+						<div class="card-body text-center">
+						<img alt="" src="img/category/laptop.png" width="65%" height="140px">
+						<p>Laptop</p>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md-2">
+					<div class="card rounded-circle shadow-sm p-3 mb-5 bg-white rounded">
+						<div class="card-body text-center">
+						<img alt="" src="img/category/mobile.jpg" width="65%" height="140px">
+						<p>Mobile Phone</p>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md-2">
+					<div class="card rounded-circle shadow-sm p-3 mb-5 bg-white rounded">
+						<div class="card-body text-center">
+						<img alt="" src="img/category/cloths.png" width="65%" height="140px">
+						<p>Clothes</p>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md-2">
+					<div class="card rounded-circle shadow-sm p-3 mb-5 bg-white rounded">
+						<div class="card-body text-center">
+						<img alt="" src="img/category/grocery.jpeg" width="65%" height="140px">
+						<p>Grocery</p>
+						</div>
+						
+					</div>
+				</div>
+				
+				<div class="col-md-2">
+					<div class="card rounded-circle shadow-sm p-3 mb-5 bg-white rounded">
+						<div class="card-body text-center">
+						<img alt="" src="img/category/beauty.png" width="65%" height="140px">
+						<p>Beauty & Fashion</p>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div> -->
+		<!-- End of Category -->
+		<!-- new modifications for Clothing store -->
+		<div class="container">
+			<div class="row">
+				<p class="text-center fs-4 mt-5 mb-5">Category</p>
+				<div class="col-md-2" th:each="category: ${latestSixActiveCategory}">
+					<div class="card rounded-circle shadow-sm p-3 mb-5 bg-white rounded">
+						<div class="card-body text-center">
+						<img alt="" th:src="@{'/img/category/'+${category.categoryImage}}" width="100%" height="130px">
+						<p><b>[[${category.categoryName}]]</b></p>
+						</div>
+					</div>
+					
+				</div>
+				
+				<!-- <div class="col-md-2">
+					<div class="card rounded-circle shadow-sm p-3 mb-5 bg-white rounded">
+						<div class="card-body text-center">
+						<img alt="" src="img/category/FormalShirt.jpg" width="100%" height="130px">
+						<p><b>Formal Shirt</b></p>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md-2">
+					<div class="card rounded-circle shadow-sm p-3 mb-5 bg-white rounded">
+						<div class="card-body text-center">
+						<img alt="" src="img/category/panjabi.jpg" width="100%" height="130px">
+						<p><b>Panjabi</b></p>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md-2">
+					<div class="card rounded-circle shadow-sm p-3 mb-5 bg-white rounded">
+						<div class="card-body text-center">
+						<img alt="" src="img/category/Pant.jpg" width="100%" height="130px">
+						<p><b>Pant</b></p>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md-2">
+					<div class="card rounded-circle shadow-sm p-3 mb-5 bg-white rounded">
+						<div class="card-body text-center">
+						<img alt="" src="img/category/Blazer.jpg" width="100%" height="130px">
+						<p><b>Blazer</b></p>
+						</div>
+						
+					</div>
+				</div>
+				
+				<div class="col-md-2">
+					<div class="card rounded-circle shadow-sm p-3 mb-5 bg-white rounded">
+						<div class="card-body text-center">
+						<img alt="" src="img/category/KnitWear.jpg" width="100%" height="130px">
+						<p><b>Knit Wear</b></p>
+						</div>
+					</div>
+				</div> -->
+				
+				<!-- <div class="col-md-2">
+					<div class="card rounded-circle shadow-sm p-3 mb-5 bg-white rounded">
+						<div class="card-body text-center">
+						<img alt="" src="img/category/beauty.png" width="95%" height="140px">
+						<p>Accessories</p>
+						</div>
+					</div>
+				</div> -->
+				
+			</div>
+		</div>
+		<!-- new modifications for Clothing store -->
+		
+		<!-- Start Latest Product Module -->
+		<!-- <div class="container-fluid bg-light p-3">
+			<p class="text-center fs-4">Latest Product</p>
+
+			<div class="row">
+				
+				<div class="col-md-3">
+				<div class="card shadow-sm p-3 mb-5 bg-white rounded">
+					<div class="card-body text-center">
+						<img alt="" src="img/product_image/laptop.png" width="65%"
+							height="140px">
+						<p class="text-center">HP Laptop</p>
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="col-md-3">
+				<div class="card shadow-sm p-3 mb-5 bg-white rounded">
+					<div class="card-body text-center">
+						<img alt="" src="img/product_image/laptop.png" width="65%"
+							height="140px">
+						<p class="text-center">HP Laptop</p>
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="col-md-3">
+				<div class="card shadow-sm p-3 mb-5 bg-white rounded">
+					<div class="card-body text-center">
+						<img alt="" src="img/product_image/laptop.png" width="65%"
+							height="140px">
+						<p class="text-center">HP Laptop</p>
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="col-md-3">
+				<div class="card shadow-sm p-3 mb-5 bg-white rounded">
+					<div class="card-body text-center">
+						<img alt="" src="img/product_image/laptop.png" width="65%"
+							height="140px">
+						<p class="text-center">HP Laptop</p>
+					</div>
+				</div>
+			</div>
+				
+				
+			</div>
+
+
+		</div> -->
+		<!-- End of the Latest Product Module -->
+		
+		<!-- Latest Product for Clothing Store -->
+		
+		<div class="container-fluid bg-light p-3">
+			<p class="text-center fs-4">Latest Product</p>
+
+			<div class="row">
+				
+				<div class="col-md-3" th:each="product: ${latestEightActiveProducts}">
+				<div class="card shadow-sm p-3 mb-5 bg-white rounded">
+					<div class="card-body text-center">
+						<img alt="" th:src="@{'/img/product_image/'+${product.productImage}}" width="60%"
+							height="140px">
+						<p class="text-center"><b>[[${product.productTitle}]]</b></p>
+					</div>
+				</div>
+			</div>
+			
+			
+			<!-- <div class="col-md-3">
+				<div class="card shadow-sm p-3 mb-5 bg-white rounded">
+					<div class="card-body text-center">
+						<img alt="" src="img/product_image/CasualShirt.jpg" width="60%"
+							height="140px">
+						<p class="text-center">Casual Shirt</p>
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="col-md-3">
+				<div class="card shadow-sm p-3 mb-5 bg-white rounded">
+					<div class="card-body text-center">
+						<img alt="" src="img/product_image/KnitWear.jpg" width="60%"
+							height="140px">
+						<p class="text-center">Polo Shirt</p>
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="col-md-3">
+				<div class="card shadow-sm p-3 mb-5 bg-white rounded">
+					<div class="card-body text-center">
+						<img alt="" src="img/product_image/Blazer.jpg" width="60%"
+							height="140px">
+						<p class="text-center">Men's Blazer</p>
+					</div>
+				</div>
+			</div> -->
+				
+				
+			</div>
+			
+			<!-- 2nd row -->
+			<!-- <div class="row">
+
+
+				<div class="col-md-3">
+				<div class="card shadow-sm p-3 mb-5 bg-white rounded">
+					<div class="card-body text-center">
+						<img alt="" src="img/product_image/T-Shirt.jpg" width="60%"
+							height="140px">
+						<p class="text-center">T-Shirt</p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-md-3">
+					<div class="card shadow-sm p-3 mb-5 bg-white rounded">
+						<div class="card-body text-center">
+							<img alt="" src="img/product_image/panjabi-slim-fit.jpg" width="60%"
+								height="140px">
+							<p class="text-center">Panjabi Slim Fit</p>
+						</div>
+					</div>
+				</div>
+			
+			
+			<div class="col-md-3">
+				<div class="card shadow-sm p-3 mb-5 bg-white rounded">
+					<div class="card-body text-center">
+						<img alt="" src="img/product_image/Casual-Shirt-Slim-Fit.jpg" width="60%"
+							height="140px">
+						<p class="text-center">Slim Fit Casual Shirt</p>
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="col-md-3">
+				<div class="card shadow-sm p-3 mb-5 bg-white rounded">
+					<div class="card-body text-center">
+						<img alt="" src="img/product_image/Accessories.jpg" width="60%"
+							height="140px">
+						<p class="text-center">Belt</p>
+					</div>
+				</div>
+			</div>
+				
+				
+			</div> -->
+			<!-- 2nd row -->
+
+
+		</div>
+		
+		<!-- Latest Product for Clothing Store  -->
+		
+		
+	</section>
+</body>
+</html>

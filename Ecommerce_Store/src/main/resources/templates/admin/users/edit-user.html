@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base::layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title>Add Product</title>
+</head>
+<body>
+<section>
+	<div class="container p-5">
+			
+			<div class="row">
+				<div class="col-md-6 offset-md-3">
+						<div class="card custom-card-shadow">
+							<div class="card-header text-center fs-4">Edit Product</div>
+							
+							<!-- Showing message to UI end -->
+							<th:block th:if="${session.successMsg}">
+								<p class="text-success fw-bold text-center mt-2">[[${session.successMsg}]]</p>
+								<th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+							</th:block>
+							<th:block th:if="${session.errorMsg}">f
+								<p class="text-danger fw-bold text-center mt-2">[[${session.errorMsg}]]</p>
+								<th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+							</th:block>
+							<!-- Showing message to UI end -->
+							
+							<div class="card-body">
+								<form action="/admin/update-product" method="post" enctype="multipart/form-data">
+									<input type="hidden" name="id" th:value="${product.id}">
+									
+									<div class="mb-3">
+										<label>Enter Title</label>
+										<input type="text" name="productTitle" class="form-control" th:value="${product.productTitle}">
+									</div>
+									
+									<div class="mb-3">
+										<label>Description</label>
+										<textarea rows="3" cols="" name="productDescription" class="form-control">[[${product.productDescription}]]</textarea>
+									</div>
+								<div class="row">
+									<div class="mb-3 col">
+										<label>Category</label> <select class="form-control"
+											name="productCategory">
+											<option>[[${product.productCategory}]]</option>
+											<!-- This code-->
+											<!-- <option th:each="category :${allCategoryList}" th:value="${category.id}" th:text="${categor84438443y.categoryName}"></option> -->
+											<!-- or the below both will work -->
+											<option th:each="category :${allCategoryList}">[[${category.categoryName}]]</option>
+
+										</select>
+									</div>
+
+									<div class="mb-3 col">
+										<label>Price</label> <input type="text" name="productPrice"
+											class="form-control" th:value="${product.productPrice}">
+									</div>
+								</div>
+								
+								<div class="row">
+									<div class="mb-3 col">
+										<label>Discount</label> <input type="number" name="discount"
+											class="form-control" th:value="${product.discount}">
+									</div>
+
+									<div class="mb-3 col">
+										<label>Discount Price</label> <input type="text" readonly="readonly"
+											class="form-control" th:value="${product.discountPrice}">
+									</div>
+								</div>
+								
+								<div class="mb-3">
+									<label>Status</label>
+									<div class="form-check">
+										<input class="form-check-input" type="radio" name="isActive"
+											id="active" value="true" th:checked="${product.isActive == true}"> <label
+											class="form-check-label" for="active"> Active</label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="radio" name="isActive" th:checked="${product.isActive == false}"
+											id="inactive" value="false"> <label
+											class="form-check-label" for="inactive"> Inactive</label>
+									</div>
+								</div>
+								
+								
+
+								<div class="row">
+									<div class="mb-3 col">
+										<label>Enter Stock</label> <input type="text"
+											name="productStock" class="form-control" th:value="${product.productStock}">
+									</div>
+
+									<div class="mb-3 col">
+										<label>Upload Image</label> <input type="file"
+											name="file" class="form-control">
+									</div>
+									
+									<div class="mb-3">
+										<img th:src="@{'/img/product_image/'+${product.productImage}}" width="110px;" height="90px;">
+									</div>
+									
+								</div>
+								<button class="btn btn-danger col-md-12">Update</button>	
+							</form> 
+							</div>
+						</div>
+				</div>
+			</div>
+	</div>
+</section>
+</body>
+</html>

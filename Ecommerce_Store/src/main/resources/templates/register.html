@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base::layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title>Register</title>
+</head>
+<body>
+	<section>
+		<div class="container mt-5 p-5">
+			<div class="row">
+				<div class="col-md-5 p-5">
+				<img alt="" src="/img/login.jpg" width="100%" height="400px">
+			</div>
+			<div class="col-md-7 mt-3 p-5">
+				<div class="card shadow p-3 mb-5 bg-body rounded">
+					<div class="card-header">
+							<p class="fs-4 text-center">Register</p>
+							<th:block th:if="${session.successMsg}">
+								<p class="text-success fw-bold text-center mt-2">[[${session.successMsg}]]</p>
+								<th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+							</th:block>
+							<th:block th:if="${session.errorMsg}">
+								<p class="text-danger fw-bold text-center mt-2">[[${session.errorMsg}]]</p>
+								<th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+							</th:block>
+						</div>
+					<div class="card-body">
+						<form action="/save-user" method="post" enctype="multipart/form-data">
+								<div class="row">
+									<div class="col">
+										<label class="form-label">Full Name</label> <input
+											class="form-control" name="name" type="text" />
+									</div>
+
+									<div class="col">
+										<label class="form-label">Mobile</label> <input
+											class="form-control" name="mobile" type="text" />
+									</div>
+								</div>
+								
+								<div class="col">
+										<label class="form-label">Email</label> <input
+											class="form-control" name="email" type="email" />
+									</div>
+								
+								<div class="row">
+									<div class="col">
+										<label class="form-label">Address</label> <input
+											class="form-control" name="address" type="text" />
+									</div>
+
+									<div class="col">
+										<label class="form-label">City</label> <input
+											class="form-control" name="city" type="text" />
+									</div>
+								</div>
+								
+								<div class="row">
+									<div class="col">
+										<label class="form-label">State</label> <input
+											class="form-control" name="state" type="text" />
+									</div>
+
+									<div class="col">
+										<label class="form-label">PIN Code</label> <input
+											class="form-control" name="pinCode" type="text" />
+									</div>
+								</div>
+								
+								<div class="row">
+									<div class="col">
+										<label class="form-label">Password</label> <input
+											class="form-control" name="password" type="password" />
+									</div>
+
+									<div class="col">
+										<label class="form-label">Confirm Password</label> <input
+											class="form-control" name="confirmPassword" type="password" />
+									</div>
+								</div>
+								
+								<div class="col">
+										<label class="form-label">Profile Image</label> <input
+											class="form-control" name="file" type="file" />
+									</div>
+								
+								
+
+								<button type="submit" class="btn bg-danger mt-3 text-white col-md-12">Register</button>
+						</form>
+
+						
+					</div>
+					<div class="card-footer text-center">
+						<a href="#" class="text-decoration-none">Forgot Password ?</a><br>Already have an account
+						<a href="/signin" class="text-decoration-none"> Login</a>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+	</section>
+	
+</body>
+</html>
