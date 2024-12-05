@@ -12,8 +12,6 @@ public interface ProductService {
 
 	public Product saveProduct(Product product);
 
-	//boolean existCategory(String categoryName);
-
 	public List<Product> getAllProducts();
 
 	public Boolean deleteProduct(long id);

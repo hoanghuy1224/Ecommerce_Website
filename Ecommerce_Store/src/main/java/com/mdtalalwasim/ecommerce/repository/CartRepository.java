@@ -13,7 +13,6 @@ import com.mdtalalwasim.ecommerce.entity.User;
 public interface CartRepository extends JpaRepository<Cart, Long>{
 	
 	public Cart findByProductIdAndUserId(Long productId, Long userId);
-	//public Cart findByProductAndUser(Product product, User user);
 
 	public Long countByUserId(Long userId);
 

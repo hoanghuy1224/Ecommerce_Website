@@ -52,15 +52,12 @@ public class AdminViewController {
 	
 	@Autowired
 	CartService cartService;
-	
-	//to track which user is login right Now
-	//by default call this method when any request come to this controller because of @ModelAttribut
+
 	@ModelAttribute 
 	public void getUserDetails(Principal principal, Model model) {
 		if(principal != null) {
 			String currenLoggedInUserEmail = principal.getName();
 			User currentUserDetails = userService.getUserByEmail(currenLoggedInUserEmail);
-			//System.out.println("Current Logged In User is :: ADMIN Controller :: "+currentUserDetails.toString());
 			model.addAttribute("currentLoggedInUserDetails",currentUserDetails);
 			
 			//for showing user cart count
@@ -166,7 +163,6 @@ public class AdminViewController {
 			System.out.println("Category old Obj "+oldCategory.toString());
 			oldCategory.setCategoryName(category.getCategoryName());
 			oldCategory.setIsActive(category.getIsActive());
-			//oldCategory.setUpdatedAt(LocalDateTime.now());
 			
 			
 			String imageName =  file.isEmpty() ?  oldCategory.getCategoryImage() : file.getOriginalFilename();
@@ -185,21 +181,9 @@ public class AdminViewController {
 				
 				session.setAttribute("successMsg", "Category Updated Successfully");
 			}else {
-				session.setAttribute("errorMsg", "Something wrong on server!");
+				session.setAttribute("errorMsg", "Siuuuuuuuuu!");
 			}
-			
-			
-			
-			//OR
-//			if(file!=null) {
-//				String newImageName = file.getOriginalFilename();
-//				System.out.println("File name: "+newImageName);
-//				oldCategory.setCategoryImage(newImageName);
-//			}else {
-//				String oldOriginalImg = oldCategory.getCategoryImage();
-//				System.out.println("File name ELSE: "+oldOriginalImg);
-//				oldCategory.setCategoryImage(oldOriginalImg);
-//			}
+
 			
 			
 		}else {
@@ -220,9 +204,7 @@ public class AdminViewController {
 		
 		return "redirect:/admin/category";
 	}
-	
-	
-	//PRODUCT-MODULE-START
+
 	
 	@GetMapping("/add-product")
 	public String addProduct(Model model) {
@@ -250,8 +232,7 @@ public class AdminViewController {
 			Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 			session.setAttribute("successMsg", "Product Save Successfully.");
 		}else {
-			session.setAttribute("errorMsg", "Something Wrong on server while save Product");
-			//System.out.println("Something Wrong on server while save Product");
+			session.setAttribute("errorMsg", "Save Product fail");
 		}
 		
 		return "redirect:/admin/product-list";
@@ -270,7 +251,7 @@ public class AdminViewController {
 		if(deleteProduct) {
 			session.setAttribute("successMsg", "Product Deleted Successfully.");
 		}else {
-			session.setAttribute("errorMsg", "Something Wrong on server while deleting Product");
+			session.setAttribute("errorMsg", " Deleting Product fail");
 		}
 		return "redirect:/admin/product-list";
 		
@@ -295,18 +276,12 @@ public class AdminViewController {
 			if (!ObjectUtils.isEmpty(updateProduct)) {
 				session.setAttribute("successMsg", "Product Updated Successfully.");
 			} else {
-				session.setAttribute("errorMsg", "Something Wrong on server while deleting Product");
+				session.setAttribute("errorMsg", "Update Product fail");
 			}
 		}
-
-		// return "redirect:/admin/product/edit-product";
 		return "redirect:/admin/product-list";
 	}
-	
-	
-	
-	//USER-WORK
-	//get all users
+
 	@GetMapping("/get-all-users")
 	public String getAllUser(Model model) {
 		
@@ -331,12 +306,11 @@ public class AdminViewController {
 			session.setAttribute("successMsg", "User Status Updated Successfully.");
 		}
 		else {
-			session.setAttribute("errorMsg", "Something Wrong on server while Updating User status");
+			session.setAttribute("errorMsg", " Updating User status fail");
 		}
 		return "redirect:/admin/get-all-users";
 		
 	}
-	
 
 
 }

@@ -8,27 +8,26 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import com.mdtalalwasim.ecommerce.entity.User;
 import com.mdtalalwasim.ecommerce.repository.UserRepository;
 
-public class UserDetailsServiceImpl implements UserDetailsService{
+public class UserDetailsServiceImpl implements UserDetailsService {
 
-	
+    @Autowired
+    private UserRepository userRepository;
 
- @Autowired UserRepository userRepository;
+    /*
+     * private final UserRepository userRepository;
+     *
+     * @Autowired public UserDetailsServiceImpl(UserRepository userRepository) {
+     * this.userRepository = userRepository; }
+     */
 
-	/*
-	 * private final UserRepository userRepository;
-	 * 
-	 * @Autowired public UserDetailsServiceImpl(UserRepository userRepository) {
-	 * this.userRepository = userRepository; }
-	 */
-	
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		System.out.println("username "+ username);
-		User user = userRepository.findByEmail(username);
-		if(user == null) {
-			throw new UsernameNotFoundException("User NOT Found for :"+username);
-		}
-		return new CustomUser(user);	
-	}
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        System.out.println("username " + username);
+        User user = userRepository.findByEmail(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("User NOT Found for :" + username);
+        }
+        return new CustomUser(user);
+    }
 
 }

@@ -44,13 +44,11 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User getUserByEmail(String email) {
-		// TODO Auto-generated method stub
 		return userRepository.findByEmail(email);
 	}
 
 	@Override
 	public List<User> getAllUsersByRole(String role) {
-		// TODO Auto-generated method stub
 		return userRepository.findByRole(role);
 	}
 
@@ -107,7 +105,6 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public void userFailedAttempt(int userId) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -121,13 +118,11 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User getUserByresetTokens(String token) {
-		// TODO Auto-generated method stub
 		return userRepository.findByResetTokens(token);
 	}
 
 	@Override
 	public User updateUserWhileResetingPassword(User userByToken) {
-		// TODO Auto-generated method stub
 		return userRepository.save(userByToken);
 	}
 	

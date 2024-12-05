@@ -23,13 +23,12 @@ public class AuthSuccessHandlerImpl implements AuthenticationSuccessHandler{
 			Authentication authentication) throws IOException, ServletException {
 			
 		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-		
-		//this will provides OUR ROLES
+
 		Set<String> roles = AuthorityUtils.authorityListToSet(authorities);
 		System.out.println("ROLES :"+roles.toString());
 		if(roles.contains("ROLE_ADMIN")) {
 			response.sendRedirect("/admin/");
-		}else {//else by default ROLE_USER//currently we have only two ROLES USER and ADMIN
+		}else {
 			response.sendRedirect("/");
 		}
 	}

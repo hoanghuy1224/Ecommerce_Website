@@ -43,14 +43,12 @@ public class CartServiceImpl implements CartService{
 		Cart cart = null;
 		
 		if(ObjectUtils.isEmpty(cartStatus)) {
-			//cart Is empty - so add product to Cart
 			cart = new Cart();
 			cart.setUser(user);
 			cart.setProduct(product);
 			cart.setQuantity(1);
 			cart.setTotalPrice(1 * product.getDiscountPrice());
 		}else {
-			//cart Is holding product. so increases the quantity of the existing product.
 			cart =cartStatus;
 			cart.setQuantity(cart.getQuantity()+1);
 			cart.setTotalPrice(cart.getQuantity() * cart.getProduct().getDiscountPrice());
@@ -63,13 +61,9 @@ public class CartServiceImpl implements CartService{
 	@Override
 	public List<Cart> getCartsByUser(Long userId) {
 	 List<Cart> carts = cartRepository.findByUserId(userId);
-	 //System.out.println("CARTS :"+carts.toString());
 	 
 	 Double totalOrderPrice = 0.0;
-	 
-		// because of my totalPrice colum is transient, so we dont get totalPrice
-		// directly from database table.
-		// we need to fetch it
+
 	 List<Cart> updatedCartList = new ArrayList<>();
 		for (Cart cart : carts) {
 			Double totalPrice = (cart.getProduct().getDiscountPrice() * cart.getQuantity());

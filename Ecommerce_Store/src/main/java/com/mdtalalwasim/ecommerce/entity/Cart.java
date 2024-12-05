@@ -33,9 +33,9 @@ public class Cart {
 	private Integer quantity;
 	
 	@Transient
-	private Double totalPrice; //Transient :this column will not created in DB. just use for UI purpose.
+	private Double totalPrice;
 	
 	@Transient
-	private Double totalOrderPrice; //Transient :this column will not created in DB. just use for UI purpose.
+	private Double totalOrderPrice;
 	
 }

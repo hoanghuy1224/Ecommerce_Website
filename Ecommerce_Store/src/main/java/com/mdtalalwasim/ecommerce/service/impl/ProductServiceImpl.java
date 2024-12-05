@@ -30,19 +30,16 @@ public class ProductServiceImpl implements ProductService{
 	
 	@Override
 	public Product saveProduct(Product product) {
-		// TODO Auto-generated method stub
 		return productRepository.save(product);
 	}
 
 	@Override
 	public List<Product> getAllProducts() {
-		// TODO Auto-generated method stub
 		return productRepository.findAll();
 	}
 
 	@Override
 	public Boolean deleteProduct(long id) {
-		// TODO Auto-generated method stub
 		 Optional<Product> product = productRepository.findById(id);
 		 if(product.isPresent()) {
 			 productRepository.deleteById(product.get().getId());
@@ -55,13 +52,11 @@ public class ProductServiceImpl implements ProductService{
 
 	@Override
 	public Optional<Product> findById(long id) {
-		// TODO Auto-generated method stub
 		return Optional.empty();
 	}
 
 	@Override
 	public Product getProductById(long id) {
-		// TODO Auto-generated method stub
 		return productRepository.findById(id).orElse(null);
 	}
 
@@ -78,15 +73,13 @@ public class ProductServiceImpl implements ProductService{
 		dbProductById.setProductStock(product.getProductStock());
 		dbProductById.setCreatedAt(product.getCreatedAt());
 		dbProductById.setIsActive(product.getIsActive());
-		//discount logic
 		dbProductById.setDiscount(product.getDiscount());
 		Double discount =product.getProductPrice()*(product.getDiscount()/100.0);
 		Double discountPrice= product.getProductPrice() - discount;
 		dbProductById.setDiscountPrice(discountPrice);
 		
 		Product updatedProduct = productRepository.save(dbProductById);
-		
-		//product save then we need to save our new updated image
+
 		if(!ObjectUtils.isEmpty(updatedProduct)) {
 			if(!file.isEmpty()) {
 				try {

@@ -48,7 +48,6 @@ public class User {
 
 	private Boolean isEnable;
 
-	// Implement user account lock for wrong password
 	private Boolean accountStatusNonLocked;
 
 	private Integer accountfailedAttemptCount;

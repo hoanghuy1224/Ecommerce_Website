@@ -48,21 +48,17 @@ public class UserController {
 		model.addAttribute("allActiveCategory",allActiveCategory);
 		
 	}
-	
-	
+
 	@GetMapping("/")
 	public String home(){
 		return "user/user-home";
 	}
-	
-	
-	//ADD TO CART Module
+
 	@GetMapping("/add-to-cart")
 	String addToCart(@RequestParam Long productId, @RequestParam Long userId, HttpSession session) {
 		System.out.println("INSIDE ITS");
 		Cart saveCart = cartService.saveCart(productId, userId);
-		
-		//System.out.println("save Cart is :"+saveCart);
+
 		if(ObjectUtils.isEmpty(saveCart)) {
 			System.out.println("INSIDE Error");
 			session.setAttribute("errorMsg", "Failed Product add to Cart");

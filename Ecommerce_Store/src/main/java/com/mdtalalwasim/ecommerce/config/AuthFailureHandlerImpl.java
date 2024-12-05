@@ -35,10 +35,8 @@ public class AuthFailureHandlerImpl extends SimpleUrlAuthenticationFailureHandle
 		
 		if(user != null) {
 			if(user.getIsEnable()) {
-				//account is active
 				
 				if(user.getAccountStatusNonLocked()) {
-					//Non-locked / Unlocked
 					if(user.getAccountfailedAttemptCount() < AppConstant.ATTEMPT_COUNT) {
 						userService.userFailedAttemptIncrease(user);
 					}else {
@@ -52,12 +50,11 @@ public class AuthFailureHandlerImpl extends SimpleUrlAuthenticationFailureHandle
 					if(userService.isUnlockAccountTimeExpired(user)) {
 						exception = new LockedException("Your account is UnLocked, Now you can login to system");
 					}else {
-						exception = new LockedException("Your account is Locked! Please try after sometimes");
+						exception = new LockedException("Your account is Locked! Please try after.");
 					}
 				}
 				
 			}else {
-				//account is inactive
 				exception = new LockedException("Your account is inactive");
 			}
 		}else {
